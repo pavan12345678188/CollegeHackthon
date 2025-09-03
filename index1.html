@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Idea Generator</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #6e8efb, #a777e3);
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    .problem-list {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 100%;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-in-out;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      background: #ff6f61;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #ff3b2e;
+    }
+
+    .output {
+      margin-top: 20px;
+      background: rgba(0,0,0,0.2);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: left;
+      max-width: 600px;
+      width: 100%;
+      display: none;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    .output h2 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Startup Idea Generator 🚀</h1>
+
+  <div class="problem-list">
+    <label><input type="radio" name="problem" value="plastic"> Plastic waste pollution</label>
+    <label><input type="radio" name="problem" value="traffic"> Traffic congestion in cities</label>
+    <label><input type="radio" name="problem" value="cyber"> Cybersecurity threats</label>
+    <label><input type="radio" name="problem" value="mental"> Lack of mental health awareness</label>
+    <label><input type="radio" name="problem" value="education"> High dropout rates in schools</label>
+    <label><input type="radio" name="problem" value="air"> Air pollution in metro cities</label>
+    <label><input type="radio" name="problem" value="electricity"> High electricity consumption in households</label>
+    <label><input type="radio" name="problem" value="deforestation"> Deforestation and loss of biodiversity</label>
+    <label><input type="radio" name="problem" value="waste"> Poor waste segregation in cities</label>
+    <label><input type="radio" name="problem" value="women"> Women safety in urban areas</label>
+    <label><input type="radio" name="problem" value="fakeNews"> Fake news and misinformation spread</label>
+    <label><input type="radio" name="problem" value="blood"> Difficulty in finding blood donors</label>
+    <label><input type="radio" name="problem" value="banking"> Limited access to banking in rural areas</label>
+    <label><input type="radio" name="problem" value="healthcare"> High cost of healthcare treatments</label>
+    <label><input type="radio" name="problem" value="disaster"> Poor disaster management during floods</label>
+    <label><input type="radio" name="problem" value="unemployment"> Unemployment due to automation</label>
+    <label><input type="radio" name="problem" value="accidents"> Traffic accidents at night due to poor lighting</label>
+    <label><input type="radio" name="problem" value="language"> Language barriers in education</label>
+    <label><input type="radio" name="problem" value="stress"> High stress levels among students</label>
+    <label><input type="radio" name="problem" value="housing"> Lack of affordable housing</label>
+    <label><input type="radio" name="problem" value="food"> Food supply chain inefficiencies</label>
+  </div>
+
+  <button onclick="generateIdea()">Get Idea 💡</button>
+
+  <div class="output" id="outputBox">
+    <h2 id="problem"></h2>
+    <p><strong>Solution:</strong> <span id="solution"></span></p>
+    <p><strong>Impact:</strong> <span id="impact"></span></p>
+    <p><strong>Idea Title:</strong> <span id="title"></span></p>
+    <p><strong>Tech Stack:</strong> <span id="tech"></span></p>
+  </div>
+
+  <script>
+    const ideas = {
+      plastic: {
+        problem: "Plastic waste pollution",
+        solution: "Biodegradable packaging alternatives",
+        impact: "Reduce ocean and land pollution 🌊",
+        title: "EcoPack Solutions",
+        tech: "Material Science, IoT for tracking, Web App"
+      },
+      traffic: {
+        problem: "Traffic congestion in cities",
+        solution: "AI-powered smart traffic signals",
+        impact: "Save travel time and reduce air pollution 🚦",
+        title: "SmartFlow AI",
+        tech: "AI/ML, IoT Sensors, Cloud Dashboard"
+      },
+      cyber: {
+        problem: "Cybersecurity threats",
+        solution: "AI-based threat detection systems",
+        impact: "Protect data and ensure online safety 🔒",
+        title: "ShieldAI",
+        tech: "AI, Blockchain, Cloud Security Tools"
+      },
+      mental: {
+        problem: "Lack of mental health awareness",
+        solution: "Mobile apps for mental health counseling",
+        impact: "Reduce stress and improve well-being 🧠",
+        title: "MindCare",
+        tech: "Mobile App (React Native), AI Chatbot, Cloud"
+      },
+      education: {
+        problem: "High dropout rates in schools",
+        solution: "AI-based student learning trackers",
+        impact: "Keep more children in school and improve literacy 🎓",
+        title: "EduTrack",
+        tech: "AI/ML, Web App, Mobile Notifications"
+      },
+      air: {
+        problem: "Air pollution in metro cities",
+        solution: "AI-powered air quality monitoring",
+        impact: "Cleaner air and healthier living environments 🌬️",
+        title: "PureAir AI",
+        tech: "IoT Sensors, AI Analytics, Mobile App"
+      },
+      electricity: {
+        problem: "High electricity consumption in households",
+        solution: "Solar-powered smart homes",
+        impact: "Lower electricity bills and sustainable homes ⚡",
+        title: "SolarSmart Homes",
+        tech: "Solar Panels, IoT Energy Meters, Mobile App"
+      },
+      deforestation: {
+        problem: "Deforestation and loss of biodiversity",
+        solution: "Drone-based forest monitoring",
+        impact: "Protect forests and save endangered species 🌳",
+        title: "ForestGuard",
+        tech: "Drones, AI Image Recognition, Cloud"
+      },
+      waste: {
+        problem: "Poor waste segregation in cities",
+        solution: "Smart bins with IoT sensors",
+        impact: "Cleaner cities with better recycling systems 🗑️",
+        title: "GreenBin",
+        tech: "IoT Sensors, Web Dashboard, AI Classification"
+      },
+      women: {
+        problem: "Women safety in urban areas",
+        solution: "Wearable safety devices with GPS",
+        impact: "Ensure women’s safety and build trust in cities 👩‍🦰",
+        title: "SafeHer",
+        tech: "Wearable Device, GPS, Mobile App"
+      },
+      fakeNews: {
+        problem: "Fake news and misinformation spread",
+        solution: "Blockchain-based news verification",
+        impact: "Stop misinformation and promote truth online 📰",
+        title: "TrueNews",
+        tech: "Blockchain, Web App, AI Fact-checker"
+      },
+      blood: {
+        problem: "Difficulty in finding blood donors",
+        solution: "AI-driven blood donor matching app",
+        impact: "Save lives by connecting donors faster 🩸",
+        title: "LifeLink",
+        tech: "Mobile App, AI Matching, Cloud"
+      },
+      banking: {
+        problem: "Limited access to banking in rural areas",
+        solution: "Digital wallets for rural banking",
+        impact: "Bring banking services to unbanked communities 🏦",
+        title: "RuralPay",
+        tech: "Mobile Wallet App, UPI, Cloud"
+      },
+      healthcare: {
+        problem: "High cost of healthcare treatments",
+        solution: "AI-powered medical diagnosis tools",
+        impact: "Faster diagnosis and better healthcare access 🏥",
+        title: "MediAI",
+        tech: "AI/ML, Mobile App, Cloud Healthcare APIs"
+      },
+      disaster: {
+        problem: "Poor disaster management during floods",
+        solution: "IoT-based disaster alert systems",
+        impact: "Save lives during natural disasters ⛈️",
+        title: "DisasterShield",
+        tech: "IoT Sensors, Cloud Alerts, Mobile App"
+      },
+      unemployment: {
+        problem: "Unemployment due to automation",
+        solution: "Skill training using AI tutors",
+        impact: "Reskill workers and reduce unemployment 📈",
+        title: "SkillUp AI",
+        tech: "AI Tutors, Web Platform, Mobile App"
+      },
+      accidents: {
+        problem: "Traffic accidents at night due to poor lighting",
+        solution: "Smart streetlights with motion sensors",
+        impact: "Reduce night-time road accidents 🚦",
+        title: "BrightWay",
+        tech: "IoT Sensors, Smart Lighting, Cloud Dashboard"
+      },
+      language: {
+        problem: "Language barriers in education",
+        solution: "AI translators for local languages",
+        impact: "Break language barriers and improve learning 🗣️",
+        title: "LinguaLearn",
+        tech: "AI Translators, Mobile/Web App"
+      },
+      stress: {
+        problem: "High stress levels among students",
+        solution: "Mindfulness and meditation apps",
+        impact: "Happier students with less stress 📚",
+        title: "CalmMind",
+        tech: "Mobile App, AI Meditation Guide"
+      },
+      housing: {
+        problem: "Lack of affordable housing",
+        solution: "3D-printed low-cost housing",
+        impact: "Provide affordable homes for low-income families 🏠",
+        title: "Home3D",
+        tech: "3D Printing, IoT, Cloud Project Management"
+      },
+      food: {
+        problem: "Food supply chain inefficiencies",
+        solution: "Blockchain-based food supply tracking",
+        impact: "Ensure safe, transparent, and efficient food delivery 🍛",
+        title: "FoodChainX",
+        tech: "Blockchain, IoT Trackers, Web Dashboard"
+      }
+    };
+
+    function generateIdea() {
+      const selected = document.querySelector('input[name="problem"]:checked');
+      const outputBox = document.getElementById("outputBox");
+
+      if (!selected) {
+        alert("Please select a problem first!");
+        return;
+      }
+
+      const key = selected.value;
+      document.getElementById("problem").textContent = ideas[key].problem;
+      document.getElementById("solution").textContent = ideas[key].solution;
+      document.getElementById("impact").textContent = ideas[key].impact;
+      document.getElementById("title").textContent = ideas[key].title;
+      document.getElementById("tech").textContent = ideas[key].tech;
+
+      outputBox.style.display = "block";
+    }
+  </script>
+</body>
+</html>
